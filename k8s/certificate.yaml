@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: k8s-multi-com-tls
+spec:
+  secretName: siyangzhang-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: siyangzhang.com
+  dnsNames:
+    - siyangzhang.com
+    - www.siyangzhang.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - siyangzhang.com
+          - www.siyangzhang.com
